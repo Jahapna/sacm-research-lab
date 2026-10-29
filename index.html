@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SACM | Research Lab</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #070b16;
+      color: #edfaff;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 7%;
+      border-bottom: 1px solid #1c3045;
+    }
+
+    .logo {
+      color: #62f5ff;
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+
+    .status {
+      color: #8fa8bc;
+      font-size: 12px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 70px 7%;
+    }
+
+    .tag {
+      color: #62f5ff;
+      letter-spacing: 3px;
+      font-size: 12px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 72px);
+      line-height: 1.05;
+      max-width: 800px;
+      margin-bottom: 24px;
+    }
+
+    h1 span {
+      color: #62f5ff;
+    }
+
+    .intro {
+      color: #a7b9cc;
+      line-height: 1.8;
+      max-width: 650px;
+      margin-bottom: 35px;
+    }
+
+    .panel {
+      border: 1px solid #25445b;
+      background: #0c1424;
+      border-radius: 16px;
+      padding: 28px;
+      margin-top: 35px;
+    }
+
+    .panel h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .panel p {
+      color: #a7b9cc;
+      line-height: 1.7;
+    }
+
+    .orb {
+      width: 150px;
+      height: 150px;
+      margin: 30px auto;
+      border: 2px solid #62f5ff;
+      border-radius: 50%;
+      box-shadow: 0 0 25px #176b91,
+                  inset 0 0 25px #176b91;
+      display: grid;
+      place-items: center;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    .core {
+      width: 65px;
+      height: 65px;
+      border: 1px dashed #b39aff;
+      border-radius: 50%;
+      background: #18223c;
+    }
+
+    @keyframes pulse {
+      50% {
+        box-shadow: 0 0 45px #176b91,
+                    inset 0 0 35px #176b91;
+      }
+    }
+
+    .label {
+      color: #62f5ff;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #71879b;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 20px;
+      }
+
+      main {
+        padding: 45px 20px;
+      }
+
+      .panel {
+        padding: 20px;
+      }
+    }
+    /* SACM WAVELENGTH LAB */
+#wavelength-lab {
+  border: 1px solid rgba(76, 220, 255, 0.35);
+  background:
+    radial-gradient(ellipse at 50% 45%, #102b48 0%, #07111f 70%);
+  overflow: hidden;
+}
+
+#wavelength-lab h2 {
+  color: #7cecff;
+  letter-spacing: 1px;
+}
+
+.wave-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+}
+
+#wavelength-lab select {
+  background: #0c1c30;
+  color: #b9f5ff;
+  border: 1px solid #48dfff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.wave-stage {
+  position: relative;
+  height: 300px;
+  max-width: 650px;
+  margin: 20px auto;
+  overflow: hidden;
+  border: 1px solid #23445f;
+  border-radius: 16px;
+  background:
+    linear-gradient(rgba(65, 190, 255, .04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(65, 190, 255, .04) 1px, transparent 1px),
+    #050c17;
+  background-size: 22px 22px;
+}
+
+.wave-beam {
+  position: absolute;
+  top: 49%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #f5ffff;
+  box-shadow: 0 0 8px currentColor, 0 0 20px currentColor;
+  animation: wave-pulse 1.5s ease-in-out infinite alternate;
+  color: #f5ffff;
+}
+
+.wave-shell {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 220px;
+  border: 2px dashed #51e8ff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px rgba(65, 220, 255, .2);
+}
+
+.shell-one {
+  width: 130px;
+  border-color: #65f6ff;
+  animation: shell-spin 9s linear infinite;
+}
+
+.shell-two {
+  width: 165px;
+  height: 245px;
+  border-color: #438bff;
+  animation: shell-spin 13s linear infinite reverse;
+}
+
+.shell-three {
+  width: 200px;
+  height: 270px;
+  border-color: #b06dff;
+  animation: shell-spin 18s linear infinite;
+}
+
+.wave-person {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #e6fbff;
+  font-size: 10px;
+  letter-spacing: 1px;
+  background: linear-gradient(160deg, #244b69, #09121e);
+  border: 1px solid #9cefff;
+  border-radius: 40% 40% 25% 25%;
+  box-shadow: 0 0 25px rgba(90, 220, 255, .3);
+}
+
+.wave-label {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  color: #80dff6;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.science-note {
+  padding: 12px;
+  border-left: 3px solid #ffbd61;
+  background: rgba(255, 189, 97, .07);
+  color: #ffd9a1;
+  font-size: 13px;
+}
+
+@keyframes shell-spin {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes wave-pulse {
+  from { opacity: .45; }
+  to { opacity: 1; }
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">SACM / LAB</div>
+    <div class="status">THEORETICAL RESEARCH</div>
+  </header>
+
+  <main>
+    <div class="tag">OPTICS • METAMATERIALS • WAVE CONTROL</div>
+
+    <h1>Can light be guided around an <span>object?</span></h1>
+
+    <p class="intro">
+      Exploring the Segmented Adaptive Cloaking Model (SACM),
+      a theoretical framework for studying segmented control
+      of light propagation and the reduction of optical scattering.
+    </p>
+
+    <section class="panel">
+      <div class="label">CONCEPTUAL MODEL / NOT A WORKING CLOAK</div>
+
+      <div class="orb">
+        <div class="core"></div>
+      </div>
+
+      <h2>Segmented Cloaking Concept</h2>
+      <p>
+        The outer layer represents light guidance. The surrounding
+        shell represents segmented optical control. The central
+        region represents the object being studied.
+      </p>
+    </section>
+
+    <!-- SACM WAVELENGTH LAB -->
+<!-- SACM SCIENTIFIC FILM: SCENE 01 -->
+<section class="panel" id="sacm-film">
+  <h2>SACM SCIENTIFIC FILM</h2>
+  <p class="science-note">SCENE 01 / UNDERSTANDING LIGHT</p>
+
+  <div style="background:#050b18; padding:24px; border-radius:14px; color:#eaf6ff;">
+    <h3>What is light?</h3>
+    <p>
+      Light is electromagnetic radiation. Its wavelength is related to
+      its colour and affects how it interacts with materials.
+    </p>
+
+    <svg viewBox="0 0 600 210" width="100%"
+         xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="lightGradient">
+          <stop offset="0%" stop-color="#ff5263"/>
+          <stop offset="35%" stop-color="#ffe66d"/>
+          <stop offset="65%" stop-color="#43f5a5"/>
+          <stop offset="100%" stop-color="#65aaff"/>
+        </linearGradient>
+      </defs>
+
+      <text x="20" y="25" fill="#d9e9ff" font-size="14">
+        ELECTROMAGNETIC WAVE
+      </text>
+
+      <line x1="20" y1="100" x2="580" y2="100"
+            stroke="#506078" stroke-width="1"
+            stroke-dasharray="4 5"/>
+
+      <path d="M20 100
+               Q40 35 60 100 T100 100
+               T140 100 T180 100
+               T220 100 T260 100
+               T300 100 T340 100
+               T380 100 T420 100
+               T460 100 T500 100
+               T540 100 T580 100"
+            fill="none" stroke="url(#lightGradient)"
+            stroke-width="4" stroke-linecap="round"/>
+
+      <line x1="60" y1="145" x2="140" y2="145"
+            stroke="#ffffff" stroke-width="1.5"/>
+      <line x1="60" y1="136" x2="60" y2="154"
+            stroke="#ffffff" stroke-width="1.5"/>
+      <line x1="140" y1="136" x2="140" y2="154"
+            stroke="#ffffff" stroke-width="1.5"/>
+      <text x="100" y="170" fill="#ffffff"
+            text-anchor="middle" font-size="14">
+        Wavelength
+      </text>
+
+      <text x="20" y="200" fill="#a9bdd8" font-size="12">
+        Simplified illustration, not to scale
+      </text>
+    </svg>
+
+    <h3>Visible light spectrum</h3>
+    <div style="display:flex; height:24px; border-radius:6px; overflow:hidden;">
+      <div style="background:#ff3645; flex:1;"></div>
+      <div style="background:#ff9638; flex:1;"></div>
+      <div style="background:#ffe64b; flex:1;"></div>
+      <div style="background:#49e779; flex:1;"></div>
+      <div style="background:#429dff; flex:1;"></div>
+      <div style="background:#844dff; flex:1;"></div>
+    </div>
+
+    <p>
+      Red light has a longer wavelength than blue or violet light.
+      White light contains a range of visible wavelengths.
+    </p>
+
+    <div style="border-left:3px solid #52e9d0; padding:10px 14px; margin-top:18px;">
+      <strong>KEY IDEA</strong>
+      <p style="margin-bottom:0;">
+        To investigate optical cloaking, we must understand how light
+        travels and interacts with materials.
+      </p>
+    </div>
+  </div>
+
+  <p class="science-note">
+    SCIENCE STATUS: Established principles of light.
+    The diagram is illustrative.
+  </p>
+</section>
+<!-- END SCENE 01 -->
+<!-- END SACM WAVELENGTH LAB -->
+<section class="panel" id="outer-light-scene">
+  <h2>01 / Outer Light-Guiding Layer</h2>
+
+  <p>
+    PROPOSED FUNCTION: Guide incoming light around a target.
+    This animation illustrates the design idea, not a verified
+    physical light path.
+  </p>
+
+  <div style="background:#050b18; color:#eaf6ff; padding:20px; border-radius:14px;">
+    <svg viewBox="0 0 600 260" width="100%"
+         xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="outerArrow" markerWidth="8" markerHeight="8"
+                refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#51e8d1"/>
+        </marker>
+      </defs>
+
+      <text x="20" y="24" fill="#a9bdd8" font-size="13">
+        CONCEPTUAL DESIGN / NOT A PHYSICS SIMULATION
+      </text>
+
+      <path d="M40 115 L190 115" stroke="#ffd166"
+            stroke-width="3" marker-end="url(#outerArrow)"/>
+      <text x="40" y="96" fill="#ffd166" font-size="13">
+        Incoming light
+      </text>
+
+      <path d="M220 75 Q300 5 380 75"
+            fill="none" stroke="#51e8d1" stroke-width="4"/>
+      <path d="M220 155 Q300 225 380 155"
+            fill="none" stroke="#51e8d1" stroke-width="4"/>
+
+      <path d="M190 115 Q195 50 260 45"
+            fill="none" stroke="#51e8d1" stroke-width="3"
+            stroke-dasharray="7 6" marker-end="url(#outerArrow)"/>
+      <path d="M260 45 Q330 25 380 75"
+            fill="none" stroke="#51e8d1" stroke-width="3"
+            stroke-dasharray="7 6" marker-end="url(#outerArrow)"/>
+
+      <path d="M190 115 Q195 180 260 185"
+            fill="none" stroke="#51e8d1" stroke-width="3"
+            stroke-dasharray="7 6" marker-end="url(#outerArrow)"/>
+      <path d="M260 185 Q330 205 380 155"
+            fill="none" stroke="#51e8d1" stroke-width="3"
+            stroke-dasharray="7 6" marker-end="url(#outerArrow)"/>
+
+      <rect x="255" y="80" width="95" height="70" rx="12"
+            fill="#27364c" stroke="#8297b5" stroke-width="2"/>
+      <text x="302" y="110" fill="#ffffff" font-size="13"
+            text-anchor="middle">Target</text>
+      <text x="302" y="128" fill="#c8d7ea" font-size="11"
+            text-anchor="middle">hidden region</text>
+
+      <path d="M380 75 L520 75" stroke="#51e8d1"
+            stroke-width="3" stroke-dasharray="7 6"
+            marker-end="url(#outerArrow)"/>
+      <path d="M380 155 L520 155" stroke="#51e8d1"
+            stroke-width="3" stroke-dasharray="7 6"
+            marker-end="url(#outerArrow)"/>
+
+      <text x="470" y="55" fill="#51e8d1" font-size="13"
+            text-anchor="middle">Intended direction</text>
+      <text x="300" y="242" fill="#a9bdd8" font-size="12"
+            text-anchor="middle">
+        Dashed paths are illustrative, not calculated.
+      </text>
+    </svg>
+  </div>
+
+  <h3>What this layer is intended to do</h3>
+  <p>
+    The outer layer represents a proposed optical structure that
+    would need carefully designed material properties to guide
+    light around a target and help reconstruct the surrounding
+    light field.
+  </p>
+
+  <p class="science-note">
+    STATUS: Proposed SACM concept. Successful redirection has not
+    been demonstrated by this illustration.
+  </p>
+</section>
+
+<section class="panel" id="metasurface-scene">
+  <h2>SCENE 03 / Engineering the Direction of Light</h2>
+
+  <p>
+    A metasurface contains engineered subwavelength structures.
+    By designing their optical response across a surface, engineers
+    can create a spatial phase gradient that changes the direction
+    of a transmitted or reflected wave.
+  </p>
+
+  <div style="background:#050b18;color:#eaf6ff;padding:16px;border-radius:14px;">
+    <p style="color:#51e8d1;font-size:12px;letter-spacing:1px;">
+      INTERACTIVE WAVEFRONT DEMONSTRATION
+    </p>
+
+    <svg viewBox="0 0 600 330" width="100%"
+         xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="metaArrow" markerWidth="7" markerHeight="7"
+                refX="5" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#ffd166"/>
+        </marker>
+      </defs>
+
+      <rect x="10" y="35" width="580" height="265" rx="10"
+            fill="#0b1729"/>
+
+      <text x="25" y="24" fill="#a9bdd8" font-size="12">
+        INCOMING WAVE
+      </text>
+      <text x="400" y="24" fill="#51e8d1" font-size="12">
+        OUTGOING WAVE
+      </text>
+
+      <g stroke="#ffd166" stroke-width="2" opacity="0.8">
+        <line x1="65" y1="55" x2="65" y2="280"/>
+        <line x1="95" y1="55" x2="95" y2="280"/>
+        <line x1="125" y1="55" x2="125" y2="280"/>
+        <line x1="155" y1="55" x2="155" y2="280"/>
+      </g>
+
+      <path d="M35 165 L190 165"
+            stroke="#ffd166" stroke-width="3"
+            marker-end="url(#metaArrow)"/>
+
+      <rect x="205" y="55" width="24" height="225" rx="4"
+            fill="#153b49" stroke="#51e8d1" stroke-width="2"/>
+
+      <g fill="#51e8d1">
+        <rect x="210" y="65" width="14" height="15" rx="2"/>
+        <rect x="210" y="91" width="14" height="15" rx="2"/>
+        <rect x="210" y="117" width="14" height="15" rx="2"/>
+        <rect x="210" y="143" width="14" height="15" rx="2"/>
+        <rect x="210" y="169" width="14" height="15" rx="2"/>
+        <rect x="210" y="195" width="14" height="15" rx="2"/>
+        <rect x="210" y="221" width="14" height="15" rx="2"/>
+        <rect x="210" y="247" width="14" height="15" rx="2"/>
+      </g>
+
+      <text x="218" y="315" fill="#51e8d1" font-size="12"
+            text-anchor="middle">Metasurface</text>
+
+      <g id="metaOutgoing" stroke="#51e8d1" stroke-width="3"
+         fill="none" stroke-linecap="round">
+        <line x1="245" y1="65" x2="540" y2="105"/>
+        <line x1="245" y1="95" x2="540" y2="135"/>
+        <line x1="245" y1="125" x2="540" y2="165"/>
+        <line x1="245" y1="155" x2="540" y2="195"/>
+        <line x1="245" y1="185" x2="540" y2="225"/>
+        <line x1="245" y1="215" x2="540" y2="255"/>
+      </g>
+
+      <g fill="#d5fff7">
+        <circle r="4">
+          <animateMotion dur="2.8s" repeatCount="indefinite"
+            path="M35 165 L190 165"/>
+        </circle>
+        <circle r="4">
+          <animateMotion dur="2.8s" begin="-1.4s" repeatCount="indefinite"
+            path="M35 165 L190 165"/>
+        </circle>
+      </g>
+
+      <text x="25" y="315" fill="#ffd166" font-size="12">
+        Wave travels toward surface
+      </text>
+    </svg>
+
+    <p style="font-size:13px;color:#b9cbe2;">
+      The animated dots indicate wave travel. The outgoing lines
+      illustrate a possible designed direction, not a calculated
+      electromagnetic field.
+    </p>
+  </div>
+
+  <h3>What changes at the surface?</h3>
+  <p>
+    The engineered structures impose different phase delays at
+    different positions. Under suitable design conditions, this
+    phase gradient can steer the outgoing wavefront.
+  </p>
+
+  <h3>Why this matters for SACM</h3>
+  <p>
+    SACM proposes distributing optical control across many segments.
+    However, steering a wave at a surface does not by itself create
+    a cloak. A cloak must manage the field around a target and
+    produce the intended field outside it.
+  </p>
+
+  <p class="science-note">
+    SCIENCE STATUS: Phase-gradient metasurfaces are an established
+    research approach. This animation is illustrative, not a
+    numerical simulation or proof of SACM performance.
+  </p>
+</section>
+
+<section class="panel" id="cloaking-evidence">
+  <h2>SCENE 04 / Real Science. Real Evidence.</h2>
+
+  <p>
+    Invisibility cloaking is a real field of electromagnetic research.
+    However, every experimental result has specific limits.
+  </p>
+
+  <div style="background:#050b18;color:#eaf6ff;padding:18px;border-radius:14px;">
+    <h3 style="color:#ffd166;">2006 | Engineered metamaterial</h3>
+    <p><strong>Wave type:</strong> Microwaves</p>
+    <p><strong>Hidden target:</strong> Copper cylinder</p>
+    <p><strong>Mechanism:</strong> Engineered material structures altered
+       electromagnetic-wave propagation around the target.</p>
+    <p><strong>Observed result:</strong> Reduced scattering and shadow
+       over a limited operating frequency range.</p>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/17053110/"
+       target="_blank" rel="noopener noreferrer"
+       style="color:#51e8d1;">Open the 2006 scientific paper ↗</a>
+
+    <div style="height:1px;background:#34445c;margin:22px 0;"></div>
+
+    <h3 style="color:#65c9ff;">2011 | Visible-light cloak</h3>
+    <p><strong>Wave type:</strong> Visible light</p>
+    <p><strong>Material:</strong> Two calcite crystals</p>
+    <p><strong>Hidden target:</strong> A tiny object in a controlled
+       optical arrangement</p>
+    <p><strong>Observed result:</strong> The object was concealed under
+       the demonstrated viewing and illumination conditions.</p>
+    <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.106.033901"
+       target="_blank" rel="noopener noreferrer"
+       style="color:#51e8d1;">Open the 2011 scientific paper ↗</a>
+  </div>
+
+  <h3>What has NOT been proven?</h3>
+  <p>
+    These experiments do not demonstrate a person becoming invisible
+    in ordinary daylight from every viewing angle. The 2006 device
+    operated with microwaves, while the 2011 calcite cloak used a
+    specific, carefully controlled optical arrangement.
+  </p>
+
+  <h3>How SACM relates to this research</h3>
+  <p>
+    SACM proposes investigating segmented optical control for a
+    human-sized target. It is a conceptual research model inspired
+    by real optical principles, not a tested invisibility device.
+  </p>
+
+  <p class="science-note">
+    EVIDENCE STANDARD: Published experimental results are distinct
+    from the proposed SACM design. No SACM cloaking performance has
+    yet been measured or demonstrated.
+  </p>
+</section>
+
+<section class="panel" id="spectrum-challenge">
+  <style>
+    #spectrum-challenge {
+      --cyan: #67e8f9;
+      --muted: #9bb2c9;
+      position: relative;
+      overflow: hidden;
+      color: #e8f5ff;
+      background:
+        radial-gradient(ellipse at 50% 0%, #123451 0%, transparent 55%),
+        #050914;
+      border: 1px solid #24445f;
+      border-radius: 20px;
+      padding: clamp(18px, 4vw, 38px);
+      font-family: inherit;
+    }
+
+    #spectrum-challenge * { box-sizing: border-box; }
+
+    #spectrum-challenge .sc-eyebrow {
+      color: var(--cyan);
+      font: 11px monospace;
+      letter-spacing: 2.5px;
+    }
+
+    #spectrum-challenge .sc-title {
+      font-size: clamp(27px, 5vw, 43px);
+      line-height: 1.08;
+      margin: 12px 0;
+      letter-spacing: -1.2px;
+    }
+
+    #spectrum-challenge .sc-intro {
+      color: var(--muted);
+      max-width: 680px;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    #spectrum-challenge .sc-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 7px;
+      margin: 25px 0 14px;
+    }
+
+    #spectrum-challenge .sc-tab {
+      background: #0a1725;
+      border: 1px solid #25435d;
+      color: #b8cbdc;
+      padding: 12px 6px;
+      border-radius: 9px;
+      font: 11px monospace;
+      cursor: pointer;
+    }
+
+    #spectrum-challenge .sc-tab[aria-pressed="true"] {
+      border-color: var(--cyan);
+      background: #102c40;
+      color: white;
+      box-shadow: inset 0 0 18px #16435b66;
+    }
+
+    #spectrum-challenge .sc-display {
+      position: relative;
+      background:
+        linear-gradient(#14233755 1px, transparent 1px),
+        linear-gradient(90deg, #14233755 1px, transparent 1px),
+        #060c17;
+      background-size: 24px 24px;
+      border: 1px solid #1e4059;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    #spectrum-challenge .sc-display svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    #spectrum-challenge .sc-flow {
+      stroke-dasharray: 8 10;
+      animation: sc-flow 1.3s linear infinite;
+    }
+
+    #spectrum-challenge .sc-glow {
+      filter: drop-shadow(0 0 5px currentColor);
+    }
+
+    #spectrum-challenge .sc-shell {
+      animation: sc-pulse 3s ease-in-out infinite;
+      transform-origin: 250px 118px;
+    }
+
+    @keyframes sc-flow {
+      to { stroke-dashoffset: -36; }
+    }
+
+    @keyframes sc-pulse {
+      50% { opacity: .68; }
+    }
+
+    #spectrum-challenge .sc-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    #spectrum-challenge .sc-card {
+      min-width: 0;
+      background: #0a1421;
+      border: 1px solid #20384f;
+      border-radius: 11px;
+      padding: 15px;
+    }
+
+    #spectrum-challenge .sc-label {
+      font: 10px monospace;
+      letter-spacing: 1.5px;
+      color: var(--cyan);
+      margin-bottom: 9px;
+    }
+
+    #spectrum-challenge .sc-card h3 {
+      font-size: 16px;
+      margin: 0 0 8px;
+    }
+
+    #spectrum-challenge .sc-card p {
+      color: #b6c8d9;
+      font-size: 13px;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    #spectrum-challenge .sc-status {
+      display: inline-block;
+      margin-top: 12px;
+      border: 1px solid #6b7280;
+      border-radius: 5px;
+      padding: 5px 7px;
+      color: #dce8f5;
+      font: 10px monospace;
+    }
+
+    #spectrum-challenge .sc-note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-left: 2px solid #fbbf24;
+      background: #17170f;
+      color: #e7d9a9;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    #spectrum-challenge .sc-footer {
+      color: #7f9ab3;
+      font: 10px monospace;
+      letter-spacing: 1px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 520px) {
+      #spectrum-challenge .sc-tabs { grid-template-columns: 1fr 1fr; }
+      #spectrum-challenge .sc-info { grid-template-columns: 1fr; }
+      #spectrum-challenge .sc-card { padding: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #spectrum-challenge .sc-flow,
+      #spectrum-challenge .sc-shell { animation: none; }
+    }
+  </style>
+
+  <div class="sc-eyebrow">SACM / OPTICAL RESEARCH LAB / 05</div>
+
+  <h2 class="sc-title">Can We Control<br>the Light Field?</h2>
+
+  <p class="sc-intro">
+    A proposed segmented cloak must do more than redirect a few rays.
+    It must control the outgoing electromagnetic field, limit unwanted
+    scattering, and work across the wavelengths it is designed for.
+  </p>
+
+  <div class="sc-tabs" role="group" aria-label="Research stages">
+    <button class="sc-tab" data-stage="0" aria-pressed="true">01 / BASELINE</button>
+    <button class="sc-tab" data-stage="1" aria-pressed="false">02 / SACM</button>
+    <button class="sc-tab" data-stage="2" aria-pressed="false">03 / RGB TEST</button>
+    <button class="sc-tab" data-stage="3" aria-pressed="false">04 / ERROR</button>
+  </div>
+
+  <div class="sc-display">
+    <svg id="sc-visual" viewBox="0 0 500 255"
+         role="img" aria-label="Conceptual optical wavefront diagram">
+      <defs>
+        <marker id="sc-arrow" markerWidth="7" markerHeight="7"
+                refX="5" refY="3" orient="auto">
+          <path d="M0 0 L6 3 L0 6" fill="#67e8f9"/>
+        </marker>
+        <linearGradient id="sc-core" x1="0" x2="1">
+          <stop offset="0" stop-color="#16344b"/>
+          <stop offset=".5" stop-color="#0c1c30"/>
+          <stop offset="1" stop-color="#16344b"/>
+        </linearGradient>
+      </defs>
+
+      <text x="18" y="22" fill="#7f9ab3" font-size="9"
+            font-family="monospace">INCIDENT FIELD → INTERACTION → OUTGOING FIELD</text>
+
+      <g id="sc-incoming" stroke="#67e8f9" stroke-width="1.5"
+         opacity=".8">
+        <path d="M55 44 V210" />
+        <path d="M75 44 V210" />
+        <path d="M95 44 V210" />
+        <path d="M115 44 V210" />
+        <path d="M135 44 V210" />
+      </g>
+
+      <g id="sc-arrows" stroke="#67e8f9" stroke-width="2"
+         fill="none" marker-end="url(#sc-arrow)">
+        <path d="M40 118 H150" class="sc-flow"/>
+        <path d="M350 118 H460" class="sc-flow"/>
+      </g>
+
+      <g id="sc-target">
+        <circle cx="250" cy="118" r="39" fill="#111b2a"
+                stroke="#fbbf24" stroke-width="1.5"/>
+        <circle cx="250" cy="118" r="31" fill="none"
+                stroke="#fbbf24" stroke-dasharray="3 5"/>
+        <text x="250" y="115" fill="#fbbf24" font-size="10"
+              text-anchor="middle">TARGET</text>
+        <text x="250" y="128" fill="#b7c5d6" font-size="8"
+              text-anchor="middle">REGION</text>
+      </g>
+
+      <g id="sc-segments" class="sc-shell" fill="none"
+         stroke="#67e8f9" stroke-width="5">
+        <path d="M220 79 A49 49 0 0 1 280 79"/>
+        <path d="M292 91 A49 49 0 0 1 292 145"/>
+        <path d="M280 157 A49 49 0 0 1 220 157"/>
+        <path d="M208 145 A49 49 0 0 1 208 91"/>
+      </g>
+
+      <g id="sc-extra" opacity="0">
+        <g stroke="#67e8f9" stroke-width="1.4" fill="none">
+          <path d="M205 68 A60 60 0 0 1 295 68"/>
+          <path d="M310 83 A60 60 0 0 1 310 153"/>
+          <path d="M295 168 A60 60 0 0 1 205 168"/>
+          <path d="M190 153 A60 60 0 0 1 190 83"/>
+        </g>
+        <g fill="#a5f3fc">
+          <circle cx="250" cy="55" r="3"/>
+          <circle cx="313" cy="118" r="3"/>
+          <circle cx="250" cy="181" r="3"/>
+          <circle cx="187" cy="118" r="3"/>
+        </g>
+      </g>
+
+      <g id="sc-scatter" stroke="#fbbf24" stroke-width="1.5"
+         fill="none" opacity=".9">
+        <path d="M218 87 L180 55"/>
+        <path d="M284 88 L326 55"/>
+        <path d="M288 149 L328 184"/>
+        <path d="M212 149 L175 184"/>
+        <path d="M180 55 l8 1 m-8 -1 l1 8"/>
+        <path d="M326 55 l-8 1 m8 -1 l-1 8"/>
+      </g>
+
+      <g id="sc-rgb" opacity="0">
+        <path d="M25 80 H170 Q200 80 218 95 Q250 118 282 95 Q310 80 340 80 H470"
+              stroke="#f87171" stroke-width="2" fill="none" class="sc-flow"/>
+        <path d="M25 118 H170 Q200 118 218 118 Q250 118 282 118 Q310 118 340 118 H470"
+              stroke="#4ade80" stroke-width="2" fill="none" class="sc-flow"/>
+        <path d="M25 156 H170 Q200 156 218 141 Q250 118 282 141 Q310 156 340 156 H470"
+              stroke="#60a5fa" stroke-width="2" fill="none" class="sc-flow"/>
+      </g>
+
+      <text id="sc-mode-label" x="18" y="239" fill="#67e8f9"
+            font-size="10" font-family="monospace">
+        BASELINE / ORDINARY TARGET
+      </text>
+    </svg>
+  </div>
+
+  <div class="sc-info">
+    <div class="sc-card">
+      <div class="sc-label" id="sc-left-label">OBSERVATION</div>
+      <h3 id="sc-left-title">The field is disturbed</h3>
+      <p id="sc-left-copy">
+        An object can alter the light reaching an observer through
+        reflection, absorption, transmission and scattering.
+      </p>
+    </div>
+
+    <div class="sc-card">
+      <div class="sc-label" id="sc-right-label">RESEARCH QUESTION</div>
+      <h3 id="sc-right-title">What must change?</h3>
+      <p id="sc-right-copy">
+        Compare the outgoing field against a reference field measured
+        or calculated with the target absent.
+      </p>
+      <span class="sc-status" id="sc-status">BASELINE / CONCEPT</span>
+    </div>
+  </div>
+
+  <div class="sc-note" id="sc-note">
+    VISUAL GUIDE: The paths are illustrative. They do not represent
+    a numerical electromagnetic simulation or measured cloak performance.
+  </div>
+
+  <div class="sc-footer">
+    SEGMENTED ADAPTIVE CLOAKING MODEL / CONCEPTUAL PROTOTYPE / NO MEASURED RESULTS
+  </div>
+
+  <script>
+    (() => {
+      const root = document.getElementById("spectrum-challenge");
+      if (!root || root.dataset.ready) return;
+      root.dataset.ready = "true";
+
+      const stages = [
+        {
+          mode: "BASELINE / ORDINARY TARGET",
+          leftLabel: "OBSERVATION",
+          leftTitle: "The field is disturbed",
+          leftCopy: "An object can alter the light reaching an observer through reflection, absorption, transmission and scattering.",
+          rightLabel: "RESEARCH QUESTION",
+          rightTitle: "What must change?",
+          rightCopy: "Compare the outgoing field against a reference field with the target absent. A cloak aims to reduce the difference.",
+          status: "BASELINE / CONCEPT",
+          note: "The yellow lines represent possible scattered directions, not measured scattering. Real behaviour depends on the object's material, shape and illumination."
+        },
+        {
+          mode: "SACM / THREE PROPOSED LAYERS",
+          leftLabel: "DESIGN STRATEGY",
+          leftTitle: "Control the optical response",
+          leftCopy: "Outer layer: guide the field. Segmented layer: engineer local phase responses. Suppression layer: reduce residual scattering.",
+          rightLabel: "EXPECTED BENEFIT",
+          rightTitle: "A closer field match",
+          rightCopy: "If correctly designed, the layers may reduce selected field errors. Their performance must be calculated and tested.",
+          status: "PROPOSED / NOT VALIDATED",
+          note: "The illuminated shell is a conceptual design diagram. It does not establish that these layers work together or achieve human-scale cloaking."
+        },
+        {
+          mode: "RGB / WAVELENGTH-DEPENDENT TEST",
+          leftLabel: "WHY THREE COLOURS?",
+          leftTitle: "One design, different responses",
+          leftCopy: "Red, green and blue have different wavelengths. Material dispersion and segment geometry can change their phase and scattering responses.",
+          rightLabel: "SACM HYPOTHESIS",
+          rightTitle: "Optimise across a band",
+          rightCopy: "A broadband design would need to meet its optical requirements across a defined wavelength range, not just at one colour.",
+          status: "HYPOTHESIS / NEEDS TESTING",
+          note: "The coloured paths distinguish wavelengths only. They are not calculated trajectories and do not claim that all three colours are successfully cloaked."
+        },
+        {
+          mode: "ERROR / HOW WOULD WE CHECK?",
+          leftLabel: "FIELD COMPARISON",
+          leftTitle: "Measure the mismatch",
+          leftCopy: "Compare the outgoing electric field with a reference field without the target. Differences can include phase, amplitude and spatial distribution.",
+          rightLabel: "VALIDATION",
+          rightTitle: "Test each wavelength",
+          rightCopy: "Calculate or measure field mismatch and scattering for each wavelength, then repeat across viewing angles and compare with the uncloaked target.",
+          status: "METHOD PROPOSED / NO DATA",
+          note: "No percentage improvement is displayed because SACM has not yet been numerically simulated or experimentally tested."
+        }
+      ];
+
+      const byId = id => document.getElementById(id);
+      const setText = (id, value) => { byId(id).textContent = value; };
+
+      function showStage(index) {
+        const s = stages[index];
+        root.querySelectorAll(".sc-tab").forEach(button => {
+          button.setAttribute("aria-pressed",
+            String(Number(button.dataset.stage) === index));
+        });
+
+        setText("sc-mode-label", s.mode);
+        setText("sc-left-label", s.leftLabel);
+        setText("sc-left-title", s.leftTitle);
+        setText("sc-left-copy", s.leftCopy);
+        setText("sc-right-label", s.rightLabel);
+        setText("sc-right-title", s.rightTitle);
+        setText("sc-right-copy", s.rightCopy);
+        setText("sc-status", s.status);
+        setText("sc-note", s.note);
+
+        byId("sc-target").style.opacity = index === 1 ? ".48" : "1";
+        byId("sc-segments").style.opacity = index === 0 ? ".18" : "1";
+        byId("sc-extra").style.opacity = index === 1 ? "1" : "0";
+        byId("sc-scatter").style.opacity = index === 0 ? "1" : ".2";
+        byId("sc-rgb").style.opacity = index === 2 ? "1" : "0";
+        byId("sc-incoming").style.opacity = index === 2 ? ".15" : ".8";
+        byId("sc-arrows").style.opacity = index === 2 ? ".1" : "1";
+
+        if (index === 3) {
+          byId("sc-target").style.opacity = ".8";
+          byId("sc-segments").style.opacity = ".7";
+          byId("sc-scatter").style.opacity = ".7";
+          byId("sc-extra").style.opacity = ".35";
+        }
+      }
+
+      root.querySelectorAll(".sc-tab").forEach(button => {
+        button.addEventListener("click", () =>
+          showStage(Number(button.dataset.stage)));
+      });
+
+      showStage(0);
+    })();
+  </script>
+</section>
+  </main>
+
+  <footer>
+    SACM RESEARCH LAB · CONCEPTUAL FRAMEWORK · 2026
+  </footer>
+  <script>
+const waveChoice = document.getElementById("waveChoice");
+const waveStage = document.getElementById("waveStage");
+const waveDescription = document.getElementById("waveDescription");
+const waveBeam = waveStage.querySelector(".wave-beam");
+const waveShells = waveStage.querySelectorAll(".wave-shell");
+
+const wavelengthData = {
+  white: {
+    color: "#f5ffff",
+    text: "White light contains many wavelengths. A real design must account for their different interactions with materials."
+  },
+  red: {
+    color: "#ff4b5c",
+    text: "Red light: approximately 650 nm. The optical response of a real material may differ at this wavelength."
+  },
+  green: {
+    color: "#45ff9a",
+    text: "Green light: approximately 530 nm. A real design would need suitable optical properties for this wavelength."
+  },
+  blue: {
+    color: "#55aaff",
+    text: "Blue light: approximately 450 nm. Shorter wavelengths can interact differently with the same optical structure."
+  }
+};
+
+waveChoice.addEventListener("change", function () {
+  const selected = wavelengthData[waveChoice.value];
+
+  waveBeam.style.background = selected.color;
+  waveBeam.style.color = selected.color;
+  waveBeam.style.boxShadow =
+    "0 0 8px " + selected.color +
+    ", 0 0 22px " + selected.color;
+
+  waveShells.forEach(function (shell, index) {
+    shell.style.borderColor = selected.color;
+    shell.style.opacity = 1 - index * 0.18;
+  });
+
+  waveDescription.textContent = selected.text;
+});
+</script>
+</body>
+<section id="interactive-lab" style="padding: 30px 20px; background: #070b13; color: #eaf6ff;">
+  <h2>ENTER THE SACM 3D RESEARCH LAB</h2>
+  <p>Explore the human-scale conceptual cloaking model.</p>
+
+  <iframe
+    src="SACM-REAL-LAB.html"
+    title="SACM Interactive 3D Research Lab"
+    style="width: 100%; height: 750px; border: 1px solid #28546a; border-radius: 14px;"
+    loading="lazy">
+  </iframe>
+
+  <p style="color: #9db3c5; font-size: 13px;">
+    Conceptual demonstration only. This is not a validated invisibility device.
+  </p>
+</section>
+</body>
+</html>
